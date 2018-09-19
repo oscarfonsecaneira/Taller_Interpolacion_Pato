@@ -75,7 +75,7 @@ draw(x[56:67],y[56:67]) # Perfil inferior posterior
 ```
 Por lo que se puede ver, la función draw se llama varias veces, ya que cada llamado hace referencia a cierta parte fundamental de la figura del pato, esta función se llama repetidas veces con la finalidad de obtener la correcta gráfica de la interpolación.
 
-A continuación se presenta la gráficaÑ
+A continuación se presenta la gráfica:
 
 <p align="center">
   <img src="interpolacion.png">
