@@ -62,7 +62,7 @@ El código determina la medida del lado del cuadrado que se debe recortar en cad
 Un esquema del problema es como el que se muestra en la figura a continuación: 
 
 <p align="center">
-  <img src="Grafica_Punto2.png">
+  <img src="coordenadas.png">
 </p>
 
 El volumen de la caja se puede obtener mediante la siguiente expresión:
