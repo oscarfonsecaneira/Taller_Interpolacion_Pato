@@ -21,45 +21,7 @@ y = c(1.3, 1.5, 1.85, 2.1, 2.6, 2.7, 2.4, 2.15, 2.05, 2.1, 2.25, 2.3, 2.25,
 plot(x,y, pch=19, cex=0.5, col = "red", asp=1,xlab="X", ylab="Y", main="Diagrama ")
 
 ```
-
-
-<a href="https://www.codecogs.com/eqnedit.php?latex=P(x)=7x^{5}+6x^{4}-6x^{3}+3x-4" target="_blank"><img src="https://latex.codecogs.com/gif.latex?P(x)=7x^{5}+6x^{4}-6x^{3}+3x-4" title="P(x)=7x^{5}+6x^{4}-6x^{3}+3x-4" /></a>
-
-<a href="https://www.codecogs.com/eqnedit.php?latex=x0=3" target="_blank"><img src="https://latex.codecogs.com/gif.latex?x0=3" title="x0=3" /></a>
-
-A través de la implementación del método de horner en Python, se obtuvieron los siguientes resutados.
-
-Con <a href="https://www.codecogs.com/eqnedit.php?latex=x0=3" target="_blank"><img src="https://latex.codecogs.com/gif.latex?x0=3" title="x0=3" /></a>
-
-Para el polinomio: <a href="https://www.codecogs.com/eqnedit.php?latex=P(x)=7x^{5}+6x^{4}-6x^{3}+3x-4" target="_blank"><img src="https://latex.codecogs.com/gif.latex?P(x)=7x^{5}+6x^{4}-6x^{3}+3x-4" title="P(x)=7x^{5}+6x^{4}-6x^{3}+3x-4" /></a>
-
-Se obtuvo como resultado: 2030 y como mínimo número de operaciones: 10
-
-Para la primera derivada: <a href="https://www.codecogs.com/eqnedit.php?latex=P'(x)=35x^4+24x^3-18x^2+3" target="_blank"><img src="https://latex.codecogs.com/gif.latex?P'(x)=35x^4+24x^3-18x^2+3" title="P'(x)=35x^4+24x^3-18x^2+3" /></a>
-
-Se obtuvo como resultado: 3324 y como mínimo número de operaciones: 8
-
-Para la segunda derivada: <a href="https://www.codecogs.com/eqnedit.php?latex=P''(x)=140x^3+72x^2-36x" target="_blank"><img src="https://latex.codecogs.com/gif.latex?P''(x)=140x^3+72x^2-36x" title="P''(x)=140x^3+72x^2-36x" /></a>
-
-Se obtuvo como resultado: 4320 y como mínimo número de operaciones: 6
-
-Para la tercera derivada: <a href="https://www.codecogs.com/eqnedit.php?latex=P'''(x)=420x^2+144x-36" target="_blank"><img src="https://latex.codecogs.com/gif.latex?P'''(x)=420x^2+144x-36" title="P'''(x)=420x^2+144x-36" /></a>
-
-Se obtuvo como resultado: 4176 y como mínimo número de operaciones: 4
-
-Para la cuarta derivada: <a href="https://www.codecogs.com/eqnedit.php?latex=P''''(x)=840x+144" target="_blank"><img src="https://latex.codecogs.com/gif.latex?P''''(x)=840x+144" title="P''''(x)=840x+144" /></a>
-
-Se obtuvo como resultado: 2664 y como mínimo número de operaciones: 2
-
-## Punto 2. 
-
-Se necesita un recipiente rectangular, sin tapa, de un litro de capacidad. Para construirlo se debe usar una lámina rectangular de 32 cm de largo y 24 cm de ancho. El procedimiento será recortar un cuadrado idéntico en cada una de las cuatro esquinas y doblar los bordes de la lámina para formar el recipiente. 
-
-El código determina la medida del lado del cuadrado que se debe recortar en cada esquina para que el recipiente tenga la capacidad requerida. 
-
-**Solución:** 
-
-Un esquema del problema es como el que se muestra en la figura a continuación: 
+Con base en lo anterior, se obtiene la siguiente gráfica unicamente con las coordenadas, antes de realizar la interpolación de la figura.
 
 <p align="center">
   <img src="coordenadas.png">
