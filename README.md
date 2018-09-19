@@ -21,59 +21,63 @@ y = c(1.3, 1.5, 1.85, 2.1, 2.6, 2.7, 2.4, 2.15, 2.05, 2.1, 2.25, 2.3, 2.25,
 plot(x,y, pch=19, cex=0.5, col = "red", asp=1,xlab="X", ylab="Y", main="Diagrama ")
 
 ```
-Con base en lo anterior, se obtiene la siguiente gráfica unicamente con las coordenadas, antes de realizar la interpolación de la figura.
+Con base en lo anterior, se obtiene la siguiente gráfica unicamente con las coordenadas, antes de realizar la interpolación de la figura. Dicha gráfica hace referencia al Diagrama de Nodos.
 
 <p align="center">
   <img src="coordenadas.png">
 </p>
 
-El volumen de la caja se puede obtener mediante la siguiente expresión:
-
-<a href="https://www.codecogs.com/eqnedit.php?latex=V(x)=x(0.24-x)(0.32-x)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?V(x)=x(0.24-x)(0.32-x)" title="V(x)=x(0.24-x)(0.32-x)" /></a>
-
-Luego, basta con resolver la siguiente ecuación: 
-
-<a href="https://www.codecogs.com/eqnedit.php?latex=V(x)=x(0.24-x)(0.32-x)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?x(0.24-x)(0.32-x)-0.001=0" title="x(0.24-x)(0.32-x)-0.001=0" /></a>
-
-Para resolver el problema, se debe tener en cuenta que el volumen solamente puede aproximarse por la izquierda al valor equivalente a un litro, para eso se le restará un valor de épsilon que permita aproximarse a la solución por la izquierda, resolvimos el problema mediante el método de Bisecciones y Newton Raphson. 
-
-**Resultados método Bisecciones:** 
+## Metodo de Spline
+Ahora bien, para realizar la interpolación se utiliza el algoritmo de spline presentado a continuación.}
 
 ```
-Intervalo: [0,0.05]
-
- x  = 0.016962500000000012
-Vol = 0.0009999886616640628
-
-Intervalo: [0.05,0.1]
-
- x  = 0.0809325
-Vol = 0.0009999921144448125
-
-Intervalo: [0.1,0.15]
-
- x  = 0.18210500000000004
-Vol = 0.0009999975752305029
+cubicSpline = function(x,y) {
+  a = rep(y)
+  n = length(x)
+  1
+  h <- (c(x,0) - c(0,x))[2:n]
+  alph <- (3/c(1,h,1,1)*(c(a,1,1) - c(1,a,1)) - 3/c(1,1,h,1)*(c(1,a,1)-c(1,1,a)))[3:n]
+  A <- c(1,rep(0,times=n-1))
+  for (i in 1:(n-2)) {
+    A <- rbind(A,c( rep(0,times=i-1) , c(h[i],2*(h[i]+h[i+1]),h[i+1]) , rep(0,times=n-i-2) ) )
+  }
+  A <- rbind(A,c(rep(0,times=n-1),1))
+  b <- c(0,alph,0)
+  c <- solve(A, b)
+  b <- ((c(a,0) - c(0,a))/c(1,h,1) - c(1,h,1)/3*(c(c,0) + 2*c(0,c)))[2:n]
+  d <- ((c(c,0) - c(0,c))/(3*c(1,h,1)))[2:n]
+  ans = rbind(a[1:n-1],b,c[1:n-1],d)
+}
+draw = function(x,y) {
+  t = 1:length(x)
+  sx = cubicSpline(t,x)
+  sy = cubicSpline(t,y)
+  for (i in 1:(length(t)-1)) {
+    dat<- data.frame(t=seq(t[i],t[i+1], by=0.1) )
+    fx <- function(x) (sx[1,i] + sx[2,i]*(x-t[i]) + sx[3,i]*(x-t[i])^2 + sx[4,i]*(x-t[i]))
+    fy <- function(x) (sy[1,i] + sy[2,i]*(x-t[i]) + sy[3,i]*(x-t[i])^2 + sy[4,i]*(x-t[i]))
+    dat$y=fy(dat$t)
+    dat$x=fx(dat$t)
+    points(dat$x,dat$y,type='l', col='blue')
+  }
+}
 
 ```
-
-**Resultados método Newton-Raphson:** 
-```
- x  = 0.0.01696064362425921
-Vol = 0.0009999102141617382
-
- x  = 0.08093306077072439
-Vol = 0.0009999775971849495
-
- x  = 0.18210497416831156
-Vol = 0.0009999958488588572
+Estas dos funciones se llaman luego de haberse graficado el diagrama de nodos, se llaman de la siguiente forma:
 
 ```
+cubicSpline(x,y)
+draw(x[1:21],y[1:21]) # Perfil Superior del pato
+draw(x[22:35],y[22:35]) # Perfil inferior cabeza
+draw(x[36:42],y[36:42]) # Perfil Ala superior
+draw(x[43:55],y[43:55]) # Perfil Ala inferior
+draw(x[56:67],y[56:67]) # Perfil inferior posterior
+```
+Por lo que se puede ver, la función draw se llama varias veces, ya que cada llamado hace referencia a cierta parte fundamental de la figura del pato, esta función se llama repetidas veces con la finalidad de obtener la correcta gráfica de la interpolación.
 
-Graficamente: 
+A continuación se presenta la gráficaÑ
 
 <p align="center">
-  <img src="f2.png">
+  <img src="interpolacion.png">
 </p>
 
-**Preguntas Adicionales:**
